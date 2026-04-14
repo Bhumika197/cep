@@ -1,0 +1,19 @@
+{
+  "name": "smart-gaushala",
+  "version": "1.0.0",
+  "description": "AI-powered platform for rural Indian farmers to convert cow dung and urine into profitable products",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": ["agriculture", "farmers", "sustainability", "cow-dung", "vermicompost"],
+  "author": "Smart Gaushala Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {}
+}

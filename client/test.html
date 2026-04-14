@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Gaushala Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        function App() {
+            const [message, setMessage] = useState('Loading...');
+            
+            useEffect(() => {
+                fetch('/api/health')
+                    .then(res => res.json())
+                    .then(data => setMessage(data.message))
+                    .catch(err => setMessage('Error: ' + err.message));
+            }, []);
+            
+            return (
+                <div className="min-h-screen bg-green-50 flex items-center justify-center">
+                    <div className="bg-white p-8 rounded-lg shadow-lg">
+                        <h1 className="text-2xl font-bold text-green-800 mb-4">Smart Gaushala Assistant</h1>
+                        <p className="text-gray-600">Server Status: {message}</p>
+                        <div className="mt-4">
+                            <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
