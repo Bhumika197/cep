@@ -2,10 +2,10 @@
   "name": "smart-gaushala-server",
   "version": "1.0.0",
   "description": "Backend API for Smart Gaushala Assistant",
-  "main": "index.js",
+  "main": "simple-server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node simple-server.js",
+    "dev": "nodemon simple-server.js"
   },
   "dependencies": {
     "express": "^4.18.2",

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = 5002;
+const PORT = process.env.PORT || 5002;
 
 // Middleware
 app.use(cors());
@@ -209,6 +209,6 @@ app.get('/api/health', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Simple server running on port ${PORT}`);
 });

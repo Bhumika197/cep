@@ -28,7 +28,7 @@ const ProfitView = () => {
     if (!currentUser) return;
     
     try {
-      const response = await axios.get(`http://localhost:5002/api/dashboard/summary?userId=${currentUser._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/dashboard/summary?userId=${currentUser._id}`);
       const data = response.data.data;
       
       setTodayData(data.today);

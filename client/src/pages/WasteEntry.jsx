@@ -35,7 +35,7 @@ const WasteEntry = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5002/api/waste/convert', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/waste/convert`, {
         dungCollected: dung,
         urineCollected: urine,
         laborHours: labor,
@@ -70,7 +70,7 @@ const WasteEntry = () => {
         inputCost: parseFloat(formData.inputCost) || 0
       };
 
-      await axios.post('http://localhost:5002/api/waste', payload);
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/waste`, payload);
       setSuccess('Waste record saved successfully!');
       
       // Reset form

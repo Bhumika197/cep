@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (userData) => {
     try {
       // Call working server API
-      const response = await axios.post('http://localhost:5002/api/auth/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/auth/login`, {
         phoneNumber: userData.phoneNumber,
         name: userData.name
       }, {

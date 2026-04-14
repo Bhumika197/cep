@@ -41,7 +41,7 @@ const History = () => {
         params.endDate = dateFilter.end;
       }
 
-      const response = await axios.get(`http://localhost:5002/api/production?userId=${currentUser._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/production?userId=${currentUser._id}`);
       setLogs(response.data.data.logs);
       setTotalPages(response.data.data.pagination.pages);
     } catch (error) {

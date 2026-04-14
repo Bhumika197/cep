@@ -41,7 +41,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5002/api/dashboard/summary?userId=${currentUser._id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5002'}/api/dashboard/summary?userId=${currentUser._id}`);
       setSummary(response.data.data);
     } catch (error) {
       setError('Failed to load dashboard data');
