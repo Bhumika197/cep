@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { TrendingUp, TrendingDown, DollarSign, Package, Clock, AlertCircle, Calendar } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 const ProfitView = () => {
+  const { currentUser } = useAuth();
   const [todayData, setTodayData] = useState(null);
   const [weeklyData, setWeeklyData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,11 +12,23 @@ const ProfitView = () => {
 
   useEffect(() => {
     fetchProfitData();
-  }, []);
+  }, [currentUser]);
+
+  // Add refresh mechanism - check for new data every 5 seconds
+  useEffect(() => {
+    if (currentUser) {
+      const interval = setInterval(() => {
+        fetchProfitData();
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [currentUser]);
 
   const fetchProfitData = async () => {
+    if (!currentUser) return;
+    
     try {
-      const response = await axios.get('/api/dashboard/summary');
+      const response = await axios.get(`http://localhost:5002/api/dashboard/summary?userId=${currentUser._id}`);
       const data = response.data.data;
       
       setTodayData(data.today);
